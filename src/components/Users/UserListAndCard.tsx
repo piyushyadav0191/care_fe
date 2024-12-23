@@ -5,6 +5,13 @@ import { useTranslation } from "react-i18next";
 import Card from "@/CAREUI/display/Card";
 import CareIcon from "@/CAREUI/icons/CareIcon";
 
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+
 import { Avatar } from "@/components/Common/Avatar";
 import Tabs from "@/components/Common/Tabs";
 import SearchInput from "@/components/Form/SearchInput";
@@ -77,30 +84,60 @@ const getNameAndStatusCard = (
   showDetailsButton = false,
 ) => {
   return (
-    <div>
+    <div className="w-full">
       <div className="flex flex-row justify-between gap-x-3">
-        <div className="flex flex-col">
+        <div className="flex flex-col min-w-0 flex-1">
           <div className="flex items-center gap-x-3">
-            <h1 id={`name-${user.username}`} className="text-base font-bold">
-              {formatName(user)}
-            </h1>
+            <div className="min-w-0 max-w-full sm:max-w-[200px] md:max-w-[300px] lg:max-w-[400px]">
+              <TooltipProvider delayDuration={200}>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <h1
+                      id={`name-${user.username}`}
+                      className="text-base font-bold text-ellipsis overflow-hidden whitespace-nowrap"
+                    >
+                      {formatName(user)}
+                    </h1>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p className="max-w-sm break-words">{formatName(user)}</p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
+            </div>
+
             <div
               className={classNames(
-                "flex items-center gap-2 rounded-full px-3 py-1",
+                "flex items-center gap-2 rounded-full px-3 py-1 shrink-0",
                 cur_online ? "bg-green-100" : "bg-gray-100",
               )}
             >
               <UserStatusIndicator user={user} />
             </div>
           </div>
-          <span
-            className="text-sm text-gray-500"
-            id={`username-${user.username}`}
-          >
-            {user.username}
-          </span>
+
+          <div className="min-w-0 max-w-full sm:max-w-[200px] md:max-w-[300px] lg:max-w-[400px]">
+            <TooltipProvider delayDuration={200}>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <span
+                    className="text-sm text-gray-500 block text-ellipsis overflow-hidden whitespace-nowrap"
+                    id={`username-${user.username}`}
+                  >
+                    {user.username}
+                  </span>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p className="max-w-sm break-words">{user.username}</p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
+          </div>
         </div>
-        <div>{showDetailsButton && GetDetailsButton(user.username)}</div>
+
+        <div className="shrink-0">
+          {showDetailsButton && GetDetailsButton(user.username)}
+        </div>
       </div>
     </div>
   );
