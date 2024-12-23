@@ -117,21 +117,12 @@ const getNameAndStatusCard = (
           </div>
 
           <div className="min-w-0 max-w-full sm:max-w-[200px] md:max-w-[300px] lg:max-w-[400px]">
-            <TooltipProvider delayDuration={200}>
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <span
-                    className="text-sm text-gray-500 block text-ellipsis overflow-hidden whitespace-nowrap"
-                    id={`username-${user.username}`}
-                  >
-                    {user.username}
-                  </span>
-                </TooltipTrigger>
-                <TooltipContent>
-                  <p className="max-w-sm break-words">{user.username}</p>
-                </TooltipContent>
-              </Tooltip>
-            </TooltipProvider>
+            <span
+              className="text-sm text-gray-500 block text-ellipsis overflow-hidden whitespace-nowrap"
+              id={`username-${user.username}`}
+            >
+              {user.username}
+            </span>
           </div>
         </div>
 
