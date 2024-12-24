@@ -93,7 +93,7 @@ const getNameAndStatusCard = (
                 <TooltipTrigger asChild>
                   <h1
                     id={`name-${user.username}`}
-                    className="text-base font-bold truncate max-w-[12rem]"
+                    className="text-base font-bold truncate max-w-[7rem]"
                   >
                     {formatName(user)}
                   </h1>
