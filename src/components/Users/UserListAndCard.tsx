@@ -84,51 +84,42 @@ const getNameAndStatusCard = (
   showDetailsButton = false,
 ) => {
   return (
-    <div className="w-full">
+    <div>
       <div className="flex flex-row justify-between gap-x-3">
-        <div className="flex flex-col min-w-0 flex-1">
+        <div className="flex flex-col">
           <div className="flex items-center gap-x-3">
-            <div className="min-w-0 max-w-full sm:max-w-[200px] md:max-w-[300px] lg:max-w-[400px]">
-              <TooltipProvider delayDuration={200}>
-                <Tooltip>
-                  <TooltipTrigger asChild>
-                    <h1
-                      id={`name-${user.username}`}
-                      className="text-base font-bold text-ellipsis overflow-hidden whitespace-nowrap"
-                    >
-                      {formatName(user)}
-                    </h1>
-                  </TooltipTrigger>
-                  <TooltipContent>
-                    <p className="max-w-sm break-words">{formatName(user)}</p>
-                  </TooltipContent>
-                </Tooltip>
-              </TooltipProvider>
-            </div>
-
+            <TooltipProvider delayDuration={200}>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <h1
+                    id={`name-${user.username}`}
+                    className="text-base font-bold"
+                  >
+                    {formatName(user)}
+                  </h1>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>{formatName(user)}</p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
             <div
               className={classNames(
-                "flex items-center gap-2 rounded-full px-3 py-1 shrink-0",
+                "flex items-center gap-2 rounded-full px-3 py-1",
                 cur_online ? "bg-green-100" : "bg-gray-100",
               )}
             >
               <UserStatusIndicator user={user} />
             </div>
           </div>
-
-          <div className="min-w-0 max-w-full sm:max-w-[200px] md:max-w-[300px] lg:max-w-[400px]">
-            <span
-              className="text-sm text-gray-500 block text-ellipsis overflow-hidden whitespace-nowrap"
-              id={`username-${user.username}`}
-            >
-              {user.username}
-            </span>
-          </div>
+          <span
+            className="text-sm text-gray-500"
+            id={`username-${user.username}`}
+          >
+            {user.username}
+          </span>
         </div>
-
-        <div className="shrink-0">
-          {showDetailsButton && GetDetailsButton(user.username)}
-        </div>
+        <div>{showDetailsButton && GetDetailsButton(user.username)}</div>
       </div>
     </div>
   );
