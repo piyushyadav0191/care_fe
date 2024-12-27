@@ -78,6 +78,7 @@ const GetDetailsButton = (username: string) => {
     </div>
   );
 };
+
 const getNameAndStatusCard = (
   user: UserModel | UserAssignedModel,
   cur_online: boolean,
@@ -93,13 +94,16 @@ const getNameAndStatusCard = (
                 <TooltipTrigger asChild>
                   <h1
                     id={`name-${user.username}`}
-                    className="text-base font-bold truncate max-w-[7rem]"
+                    className="text-base font-bold truncate max-w-[7rem] inline-block"
                   >
                     {formatName(user)}
                   </h1>
                 </TooltipTrigger>
-                <TooltipContent>
-                  <p>{formatName(user)}</p>
+                <TooltipContent
+                  className="px-4 py-3 text-sm bg-black text-white rounded-xl shadow-xl border border-indigo-300 animate-in fade-in-0 zoom-in-95 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2"
+                  sideOffset={5}
+                >
+                  <p className="font-semibold">{formatName(user)}</p>
                 </TooltipContent>
               </Tooltip>
             </TooltipProvider>
